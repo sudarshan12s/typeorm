@@ -2220,6 +2220,7 @@ export class OracleQueryRunner extends BaseQueryRunner implements QueryRunner {
     async clearDatabase(): Promise<void> {
         const isAnotherTransactionActive = this.isTransactionActive
         if (!isAnotherTransactionActive) await this.startTransaction()
+
         try {
             // drop views
             const dropViewsQuery = `SELECT 'DROP VIEW "' || VIEW_NAME || '"' AS "query" FROM "USER_VIEWS"`
